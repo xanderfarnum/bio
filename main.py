@@ -1,6 +1,9 @@
-from Genes import *
+from Gene import *
+from Objects import print_seq
 
-gene = Pura()
-gene.get_dna(key_type='locus')
+object = Pura()
+object.get_dna(key_type='position')
+object.get_rna()
+object.get_protein()
 
-print(gene.dna.seq)
+print_seq(object.protein.seq)
