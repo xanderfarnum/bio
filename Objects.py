@@ -22,16 +22,44 @@ class Object():
         self.protein = Protein()
 
 class Dna(Object):
+    template='NC_00000'
     def __init__(self):
         pass
+
+    def addentry(self,seq,loc):
+        self.start = loc.start
+        self.stop = loc.stop
+        self.seq = seq[self.start:self.stop]
+
 
 class Rna(Object):
     def __init__(self):
         pass
 
 class Protein(Object):
+    template='lcl|NC_00000'
     def __init__(self):
         pass
 
     def fold(self):
-        import alphafold-colabfold
+        import alphafold
+
+class Id():
+    def __init__(self,**kwargs):
+        for key,value in kwargs.items():
+            setattr(self,key,value)
+
+class Locus():
+    def __init__(self,**kwargs):
+        for key,value in kwargs.items():
+            setattr(self,key,value)
+
+
+
+
+if __name__ == "__main__":
+    from Genes import *
+
+    gene = Pura()
+    gene.get_dna(key_type='locus')
+

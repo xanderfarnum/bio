@@ -1,0 +1,45 @@
+Nucleic Acids Research (NAR) 2024 Database Issue
+    Lists all resources
+
+Biopython Documentation:    https://biopython.org/docs/latest/index.html
+NCBI:                       https://www.ncbi.nlm.nih.gov/
+    Sequences records and related information for numerous organisms (via RefSeq)
+        NP_ prefix: protein
+        NM_ prefix: mRNA
+        NC_ prefix: genomic (usually reference assembly)
+    Entrez as the interface into the data
+
+Protein Data Bank (PDB):    https://www.rcsb.org/
+    The major repository of 3D structural information about biological macromolecules
+
+GenBank
+    Contains all annotated and identified DNA sequence information
+UniProt
+    Universal Protein Resource8 is the most authoritative repos- itory of protein sequence data.
+
+Comprehensive Human Expressed SequenceS (CHESS)
+    Annotations for the human genome
+
+
+
+Accession numbers > GenBank gi numbers
+
+Data Formats
+    GTF/GFF- interval formats
+        Retain only coordinate positions for a region in a genome
+        Tab delimited
+        Info: chromosomal coordinate, start, end, strand, value, etc.
+    SAM/BAM/CRAM- sequence alignment maps
+        Represent alignment of FASTQ file to a reference FASTA file, describing individual pairwise alignments
+        Compact Idiosyncratic Gapped Alignment Report (CIGAR) 
+    VCF- variant call format
+        Describes variation of alignments relative to a reference
+        Typically created from a BAM file
+
+Sequence Ontology
+    Structural- Describes what a segment of DNA is
+Gene Ontology
+    Functional- Describes what a segment of DNA does
+
+Basic Local Alignment Search Tool (BLAST)
+    Partial match of the query sequence to a target sequence in the database
