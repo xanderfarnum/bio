@@ -36,7 +36,10 @@ class Dna(Object):
 
     def set_seq(self,seq,start,stop):
         super().set_seq_idx(start,stop)
-        self.seq = seq[self.start:self.stop]
+        self.seq = seq[self.start:self.stop].upper()
+
+        from Bio.SeqUtils import gc_fraction
+        self.gc = gc_fraction(self.seq)
 
 class Rna(Object):
     cstart='AUG'
@@ -79,7 +82,3 @@ class Position():
     def __init__(self,**kwargs):
         for key,value in kwargs.items():
             setattr(self,key,value)
-
-
-def print_seq(seq):
-    print(repr(str(seq)))

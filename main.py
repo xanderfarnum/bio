@@ -1,9 +1,14 @@
-from Gene import *
-from Objects import print_seq
+from molecular.data import Data
 
-object = Pura()
-object.get_dna(key_type='position')
-object.get_rna()
-object.get_protein()
+# rdata = Data.get_data(
+#         source='remote',
+#         species='Homo Sapien',
+#         gene='Pura'
+# )
 
-print_seq(object.protein.seq)
+lcl_data = Data.get_data(
+        source='local',
+        genome='GRCh37',
+        species='Homo Sapien',
+        gene='Pura'
+)

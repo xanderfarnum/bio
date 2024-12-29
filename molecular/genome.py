@@ -62,8 +62,3 @@ class Genome():
                     feat.set_seq(seq=record.seq,
                                  start=position.start,
                                  stop=position.stop)
-
-#separate Family into json file
-class Family():
-    myc = ['Cmyc','Nmyc','Lmyc']
-    pur = ['Pura','Purb','Purg1','Purg2']

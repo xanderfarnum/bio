@@ -2,10 +2,8 @@ import os
 # from gtfparse.read_gtf import parse_gtf,parse_gtf_pandas
 
 from Bio import SeqIO
-from dataclasses import dataclass
 from abc import ABC,abstractmethod
 
-@dataclass
 class AbsFile(ABC):
     dir = {
     'base': '/Users/alexanderfarnum/Documents',
@@ -16,7 +14,6 @@ class AbsFile(ABC):
     def __init__(self,file_name):
         self.file_name = file_name
 
-@dataclass
 class Fasta(AbsFile):
     def __init__(self,file_name,species='Human'):
         """
@@ -45,7 +42,6 @@ class Fasta(AbsFile):
         for record in self.fiter:
             print(record.id[idx])
 
-@dataclass
 class Annotations(AbsFile):
     ext = 'gtf'
     def __init__(self,file_name,species='Human',gene=None):

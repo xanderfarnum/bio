@@ -20,7 +20,7 @@ It suports various types of information processing and retrieval capabilities:
   - Protein Processing
     - Sequencing
     - BLAST
-    - Modeling
+    - Modeling- alphafold, esmfold
 ### Compatible Data Formats
   - FASTA
   - FASTQ
@@ -35,7 +35,10 @@ It suports various types of information processing and retrieval capabilities:
     - [Protein Data Bank (PDB)](https://www.rcsb.org/)
   - Misc.
     - [2024 Nucleic Acids Research Database](https://academic.oup.com/nar/article/52/D1/D1/7456037)
-
+    - Entrez
+      - [Database List](https://assets.geneious.com/manual/2021.2/static/GeneiousManualsu27.html)
+      - [Return Types](https://www.ncbi.nlm.nih.gov/books/NBK25499/table/chapter4.T._valid_values_of__retmode_and/?report=objectonly)
+    - [HTTP Request Methods](https://www.w3schools.com/tags/ref_httpmethods.asp)
 
 ## Disease Phenotype
 
