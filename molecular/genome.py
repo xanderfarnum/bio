@@ -2,10 +2,17 @@ class Genome():
     dir = '/Users/alexanderfarnum/Documents/Data'
     def __init__(self,gname):
         self.dir += '/'+gname
-        fname = self.ext2file(dir=self.dir,fext='gtf')
+        fname = self._ext2file(dir=self.dir,fext='gtf')
         from gtfparse import read_gtf
         self.dataframe = read_gtf(fname)
         self.fields = self.dataframe.columns
+
+    def _ext2file(self,dir,fext):
+        from os import listdir,path
+        f_list = listdir(dir)
+        f_idx = [x for x in range(len(f_list)) if f_list[x].endswith('.'+fext)]
+        return path.join(dir,f_list[f_idx[0]])
+
 
     def load_datafile(self,fext):
         from Bio import SeqIO
@@ -13,12 +20,6 @@ class Genome():
         match fext:
             case 'faa' | 'fna':
                 return SeqIO.parse(fname,format='fasta')
-
-    def ext2file(self,dir,fext):
-        from os import listdir,path
-        f_list = listdir(dir)
-        f_idx = [x for x in range(len(f_list)) if f_list[x].endswith('.'+fext)]
-        return path.join(dir,f_list[f_idx[0]])
 
     def get_faa(self):
         import os
@@ -52,13 +53,13 @@ class Genome():
 
         return [self.dataframe[x,:] for x in get_id(key,key_type) if self.dataframe[x,self.fields.index('feature')]==feat][0]
         
-    def position2entry(self,file,feat,position):
+    def loc2entry(self,file,feat,loc):
         get_chr = lambda id : True if id == record.id[0:len(id)] else False
 
         for record in file:
-            if get_chr(feat.template+str(position.chr)):
+            if get_chr(feat.template+str(loc.chr)):
                 print(record.description)
                 if record.description.endswith('Primary Assembly'):
                     feat.set_seq(seq=record.seq,
-                                 start=position.start,
-                                 stop=position.stop)
+                                 start=loc.start,
+                                 stop=loc.stop)

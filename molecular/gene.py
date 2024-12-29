@@ -3,13 +3,29 @@ class Gene():
     gca: RefSeq assembly (NCBI curated version of gcf)
     gcf: GenBank assembly
     """
-    def __init__(self,obj):
-        from molecular.genome import Genome
-        from molecular.utils import get_subdata
-        self.genome = Genome(gname=obj.parameters.genome)
-        self.name = obj.parameters.gene
-        subdata = get_subdata(obj)
-        #TODO: iterate through subdata and assign Gene (or up one level at Data) object attributes
+    def __init__(self,obj,source):
+        match source:
+            case 'remote':      # load via Entrez
+                from Bio import Entrez
+                from molecular.utils import Query
+                if obj.parameters.species: 
+                    q = Query(str=obj.parameters.species+"[Orgn]",delim='AND')
+                if obj.parameters.gene: 
+                    q.append(str=obj.parameters.gene+"[Gene]")
+
+                stream = Entrez.esearch(db="nucleotide",
+                                        term=q.construct(),
+                                        idtype="acc")
+                self.data = Entrez.read(stream)
+            case 'local':
+                from molecular.genome import Genome
+                from molecular.utils import get_subdata, list2attrs
+                from molecular.objects import Dna
+
+                self.genome = Genome(gname=obj.parameters.genome)
+                self.name = obj.parameters.gene
+                list2attrs(obj=self,_dict=get_subdata(obj))
+                self.dna = Dna.get_seq()
 
 
     def entry_from_file(self,

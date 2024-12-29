@@ -41,6 +41,10 @@ class Dna(Object):
         from Bio.SeqUtils import gc_fraction
         self.gc = gc_fraction(self.seq)
 
+    def get_seq(loc):
+        self = Dna()
+
+
 class Rna(Object):
     cstart='AUG'
     cstop=['UAA','UAG','UGA']
@@ -52,7 +56,6 @@ class Rna(Object):
     def set_seq(self,seq,start,stop):
         super().set_seq_idx(start,stop)
         self.seq = seq[self.start:self.stop]
-
 
 class Protein(Object):
     template='lcl|NC_00000'
@@ -72,13 +75,13 @@ class Protein(Object):
         import alphafold
 
 
+
 class Id():
     def __init__(self,**kwargs):
         for key,value in kwargs.items():
             setattr(self,key,value)
 
-
-class Position():
+class Location():
     def __init__(self,**kwargs):
         for key,value in kwargs.items():
             setattr(self,key,value)
